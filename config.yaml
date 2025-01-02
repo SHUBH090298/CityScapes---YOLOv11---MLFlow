@@ -3,7 +3,7 @@ experiment_name: "YOLOv11_Cityscapes_Experiments"
 mode: "train"  # Set to "train" or "test"
 
 model:
-  name: "yolov11n.pt"  # Pretrained weights file
+  name: "C:/projects/Cityscapes_Yolov11_MLFlow/yolo11n.pt"  # Pretrained weights file
   optimizer: "AdamW"  # Optimizer type
   learning_rate: 0.001  # Initial learning rate
   weight_decay: 0.0005  # Weight decay (L2 regularization)
@@ -12,7 +12,10 @@ model:
     warmup_epochs: 2  # Number of warmup epochs
 
 data:
-  yaml_path: r"C:\projects\Cityscapes_Yolov11_MLFlow\data.yaml" # Path to your dataset YAML file
+  train: "C:/projects/Cityscapes_Yolov11_MLFlow/train"
+  val: "C:/projects/Cityscapes_Yolov11_MLFlow/val"
+  test: "C:/projects/Cityscapes_Yolov11_MLFlow/test"
+  yaml_path: "C:/projects/Cityscapes_Yolov11_MLFlow/data.yaml" # Path to your dataset YAML file
   augmentation:
     flip: false
     hsv: false

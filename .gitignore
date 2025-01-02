@@ -14,7 +14,7 @@ val/labels/
 test/images/
 test/labels/
 runs/
-
+mlruns/
 # Distribution / packaging
 .Python
 build/

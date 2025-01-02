@@ -17,16 +17,16 @@ def prepare_data_paths(config):
     Prepare the paths for train, val, and test data based on the config.yaml file.
     """
     data_config = config["data"]
-    # Paths for images
+
+    # Directly use the paths provided in config
     train_images = os.path.join(data_config["train"], "images")
     val_images = os.path.join(data_config["val"], "images")
     test_images = os.path.join(data_config["test"], "images")
 
-    # Labels paths for train and val only
+    # If you need labels, update accordingly
     train_labels = os.path.join(data_config["train"], "labels")
     val_labels = os.path.join(data_config["val"], "labels")
 
-    # Return data paths
     return {
         "train_images": train_images,
         "val_images": val_images,
@@ -58,6 +58,10 @@ def train_yolo_with_mlflow(config):
         **training_params
     })
 
+    # Ensure any previous run is ended
+    if mlflow.active_run() is not None:
+        mlflow.end_run()
+
     # Start MLflow tracking
     with mlflow.start_run():
         # Initialize YOLO model with pretrained weights
@@ -69,10 +73,7 @@ def train_yolo_with_mlflow(config):
             epochs=training_params["epochs"],
             batch=training_params["batch_size"],
             imgsz=training_params["img_size"],
-            train_path=data_paths["train_images"],
-            val_path=data_paths["val_images"],
-            train_labels=data_paths["train_labels"],
-            val_labels=data_paths["val_labels"]
+
         )
 
         # Log metrics
@@ -112,6 +113,10 @@ def test_yolo_with_mlflow(config):
         "data": data_path,
         **testing_params
     })
+
+    # Ensure any previous run is ended
+    if mlflow.active_run() is not None:
+        mlflow.end_run()
 
     # Start MLflow tracking
     with mlflow.start_run():
