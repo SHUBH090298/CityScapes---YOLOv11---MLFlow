@@ -2,7 +2,7 @@ import os
 import yaml
 import mlflow
 from ultralytics import YOLO
-from mlflow_utils import setup_mlflow, log_params, log_metrics, log_artifacts
+from mlflow_utils import setup_mlflow, log_params, log_metrics, log_artifacts, log_model
 
 def load_config(config_path="config.yaml"):
     """
@@ -35,11 +35,11 @@ def prepare_data_paths(config):
         "val_labels": val_labels
     }
 
-def setup_mlflow(experiment_name):
+def setup_mlflow(experiment_name, tracking_uri="file:///C:/projects/Cityscapes_Yolov11_MLFlow/runs/mlflow"):
     """
     Sets up MLflow experiment and tracking URI.
     """
-    mlflow.set_tracking_uri("file:/path_to_mlflow_logs")  # Set the URI for MLflow logs
+    mlflow.set_tracking_uri(tracking_uri)  # Set the URI for MLflow logs
     mlflow.set_experiment(experiment_name)
 
 def train_yolo_with_mlflow(config):
@@ -70,7 +70,7 @@ def train_yolo_with_mlflow(config):
         mlflow.end_run()
 
     # Start MLflow tracking
-    with mlflow.start_run():
+    with mlflow.start_run() as run:
         # Initialize YOLO model with pretrained weights
         model = YOLO(model_path)
 
@@ -95,7 +95,7 @@ def train_yolo_with_mlflow(config):
 
         # Log the final trained model
         if logging_params["log_model"]:
-            mlflow.pytorch.log_model(model, artifact_path="model")
+            log_model(model, artifact_path="model")
 
 def test_yolo_with_mlflow(config):
     """

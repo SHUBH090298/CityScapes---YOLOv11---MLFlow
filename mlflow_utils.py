@@ -2,11 +2,11 @@ import mlflow
 import os
 import yaml
 
-def setup_mlflow(experiment_name):
+def setup_mlflow(experiment_name, tracking_uri="file:///C:/projects/Cityscapes_Yolov11_MLFlow/runs/mlflow"):
     """
     Sets up MLflow experiment.
     """
-    # Set experiment based on the provided experiment name
+    mlflow.set_tracking_uri(tracking_uri)  # Set the URI for MLflow logs
     mlflow.set_experiment(experiment_name)
 
 def log_params(params):
@@ -39,6 +39,12 @@ def load_config(config_path):
     with open(config_path, 'r') as f:
         config = yaml.safe_load(f)
     return config
+
+def log_model(model, artifact_path):
+    """
+    Log model to MLflow.
+    """
+    mlflow.pytorch.log_model(model, artifact_path)
 
 def log_experiment_details(config):
     """
