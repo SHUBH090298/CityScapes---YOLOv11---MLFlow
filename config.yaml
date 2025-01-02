@@ -1,0 +1,69 @@
+experiment_name: "YOLOv11_Cityscapes_Experiments"
+
+mode: "train"  # Set to "train" or "test"
+
+model:
+  name: "yolov11n.pt"  # Pretrained weights file
+  optimizer: "AdamW"  # Optimizer type
+  learning_rate: 0.001  # Initial learning rate
+  weight_decay: 0.0005  # Weight decay (L2 regularization)
+  scheduler:
+    type: "cosine"  # Learning rate scheduler type (e.g., cosine, step, none)
+    warmup_epochs: 2  # Number of warmup epochs
+
+data:
+  yaml_path: r"C:\projects\CityScapes---YOLOv11---MLFlow\data.yaml" # Path to your dataset YAML file
+  augmentation:
+    flip: false
+    hsv: false
+    mixup: false
+  val_split: 0.1  # Validation split ratio
+  num_classes: 9  # Number of classes in Cityscapes dataset
+
+training:
+  epochs: 50  # Total number of epochs
+  batch_size: 16
+  img_size: 256
+  gradient_accumulation: 2  # Accumulate gradients for these many steps
+  patience: 5  # Early stopping patience (number of epochs)
+  seed: 42  # Random seed for reproducibility
+
+logging:
+  save_artifacts: true  # Save training runs in MLflow
+  log_model: true       # Log final trained model to MLflow
+  log_interval: 10      # Log metrics every N iterations
+  log_histograms: true  # Log weight and gradient histograms
+
+testing:
+  conf_threshold: 0.25  # Confidence threshold for predictions
+  iou_threshold: 0.45   # IoU threshold for NMS
+  batch_size: 32  # Batch size for evaluation
+  save_predictions: true  # Save test predictions
+  test_set: "val"  # Test on validation or test set
+
+metrics:
+  precision: true
+  recall: true
+  mAP: true  # Mean Average Precision
+  fps: true  # Frames per second
+
+callbacks:
+  checkpointing:
+    enabled: true
+    save_best: true  # Save the best model
+    save_interval: 5  # Save model every N epochs
+  early_stopping:
+    enabled: true
+    patience: 5  # Stop if no improvement after N epochs
+  learning_rate_monitor: true  # Log learning rate changes
+
+hardware:
+  use_gpu: true
+  num_gpus: 1
+  mixed_precision: true  # Enable mixed precision training
+
+metadata:
+  author: "Shubhneet Singh"
+  project: "YOLOv11 on Cityscapes Dataset"
+  description: "Experiment tracking with MLflow for YOLOv11 using Cityscapes dataset."
+  date: "2025-01-02"

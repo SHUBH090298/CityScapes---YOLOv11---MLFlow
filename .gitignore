@@ -5,6 +5,15 @@ __pycache__/
 
 # C extensions
 *.so
+#folder image paths
+# Ignore the image and label directories inside train, val, test, and runs
+train/images/
+train/labels/
+val/images/
+val/labels/
+test/images/
+test/labels/
+runs/
 
 # Distribution / packaging
 .Python

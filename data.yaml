@@ -1,0 +1,20 @@
+# Data configuration for YOLOv11 on Cityscapes Dataset
+
+# Paths to training and validation images
+train: r"C:/projects/CityScapes---YOLOv11---MLFlow/train/images"  # Path to training images
+val: r"C:/projects/CityScapes---YOLOv11---MLFlow/val/images "     # Path to validation images
+test: r"C:\projects\CityScapes---YOLOv11---MLFlow\test\images"
+# Number of classes in the dataset
+nc: 9
+
+# Class names
+names: 
+  - person
+  - car
+  - train
+  - rider
+  - bicycle
+  - motorcycle
+  - bus
+  - truck
+  - background
