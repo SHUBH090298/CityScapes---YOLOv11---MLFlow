@@ -84,9 +84,9 @@ def train_yolo_with_mlflow(config):
 
         # Log metrics
         log_metrics({
-            "final_loss": results["metrics"]["box_loss"],
-            "map50": results["metrics"]["mAP_50"],
-            "map95": results["metrics"]["mAP_50:95"]
+            "final_loss": results.metrics.box_loss,
+            "map50": results.metrics.mAP_50,
+            "map95": results.metrics.mAP_50_95
         })
 
         # Log artifacts (optional)

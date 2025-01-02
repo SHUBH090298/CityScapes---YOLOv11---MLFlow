@@ -3,7 +3,7 @@ experiment_name: "YOLOv11_Cityscapes_Experiments_1"
 mode: "train"  # Set to "train" or "test"
 
 model:
-  name: "C:/projects/Cityscapes_Yolov11_MLFlow/yolo11n.pt"  # Pretrained weights file
+  name: "C:/projects/Cityscapes_Yolov11_MLFlow/yolo11m.pt"  # Pretrained weights file
   optimizer: "AdamW"  # Optimizer type
   learning_rate: 0.001  # Initial learning rate
   weight_decay: 0.0005  # Weight decay (L2 regularization)
@@ -17,14 +17,14 @@ data:
   test: "C:/projects/Cityscapes_Yolov11_MLFlow/test"
   yaml_path: "C:/projects/Cityscapes_Yolov11_MLFlow/data.yaml" # Path to your dataset YAML file
   augmentation:
-    flip: false
+    flip: true
     hsv: false
     mixup: false
   val_split: 0.1  # Validation split ratio
   num_classes: 9  # Number of classes in Cityscapes dataset
 
 training:
-  epochs: 50  # Total number of epochs
+  epochs: 60  # Total number of epochs
   batch_size: 16
   img_size: 256
   gradient_accumulation: 2  # Accumulate gradients for these many steps
