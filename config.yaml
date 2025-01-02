@@ -1,4 +1,4 @@
-experiment_name: "YOLOv11_Cityscapes_Experiments"
+experiment_name: "YOLOv11_Cityscapes_Experiments_Final"
 
 mode: "train"  # Set to "train" or "test"
 

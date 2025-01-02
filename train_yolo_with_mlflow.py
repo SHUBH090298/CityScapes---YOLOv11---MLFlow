@@ -35,6 +35,13 @@ def prepare_data_paths(config):
         "val_labels": val_labels
     }
 
+def setup_mlflow(experiment_name):
+    """
+    Sets up MLflow experiment and tracking URI.
+    """
+    mlflow.set_tracking_uri("file:/path_to_mlflow_logs")  # Set the URI for MLflow logs
+    mlflow.set_experiment(experiment_name)
+
 def train_yolo_with_mlflow(config):
     """
     Train YOLOv8 with experiment tracking via MLflow.
@@ -73,7 +80,6 @@ def train_yolo_with_mlflow(config):
             epochs=training_params["epochs"],
             batch=training_params["batch_size"],
             imgsz=training_params["img_size"],
-
         )
 
         # Log metrics
