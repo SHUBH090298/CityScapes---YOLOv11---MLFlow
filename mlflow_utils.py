@@ -118,7 +118,6 @@ def log_experiment_run(config_path='config.yaml'):
     log_experiment_details(config)
 
     # Log parameters, metrics, and artifacts (example usage)
-    # You can replace these placeholders with actual training/testing results
     example_params = {
         'learning_rate': config['model']['learning_rate'],
         'batch_size': config['training']['batch_size']
@@ -133,6 +132,3 @@ def log_experiment_run(config_path='config.yaml'):
 
     # Log artifacts directory (assuming you have a directory for saved models or outputs)
     log_artifacts('project/runs')
-
-if __name__ == "__main__":
-    log_experiment_run(config_path='config.yaml')
