@@ -1,8 +1,10 @@
 import mlflow
 import os
 import yaml
+import torch
+from ultralytics import YOLO
 
-def setup_mlflow(experiment_name, tracking_uri="file:///C:/projects/Cityscapes_Yolov11_MLFlow/runs/mlflow"):
+def setup_mlflow(experiment_name, tracking_uri="file:///C:/projects/Cityscapes_Yolov11_MLFlow/mlruns"):
     """
     Sets up MLflow experiment.
     """
@@ -103,32 +105,3 @@ def log_experiment_details(config):
     mlflow.log_param('project', metadata.get('project'))
     mlflow.log_param('description', metadata.get('description'))
     mlflow.log_param('date', metadata.get('date'))
-
-def log_experiment_run(config_path='config.yaml'):
-    """
-    Main function to load config and log the experiment.
-    """
-    # Load configuration
-    config = load_config(config_path)
-
-    # Set up MLflow experiment
-    setup_mlflow(config['experiment_name'])
-
-    # Log experiment details
-    log_experiment_details(config)
-
-    # Log parameters, metrics, and artifacts (example usage)
-    example_params = {
-        'learning_rate': config['model']['learning_rate'],
-        'batch_size': config['training']['batch_size']
-    }
-    log_params(example_params)
-
-    example_metrics = {
-        'accuracy': 0.95,
-        'loss': 0.05
-    }
-    log_metrics(example_metrics)
-
-    # Log artifacts directory (assuming you have a directory for saved models or outputs)
-    log_artifacts('project/runs')

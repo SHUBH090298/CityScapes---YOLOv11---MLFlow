@@ -35,7 +35,7 @@ def prepare_data_paths(config):
         "val_labels": val_labels
     }
 
-def setup_mlflow(experiment_name, tracking_uri="file:///C:/projects/Cityscapes_Yolov11_MLFlow/runs/mlflow"):
+def setup_mlflow(experiment_name, tracking_uri="file:///C:/projects/Cityscapes_Yolov11_MLFlow/mlruns"):
     """
     Sets up MLflow experiment and tracking URI.
     """
@@ -91,7 +91,7 @@ def train_yolo_with_mlflow(config):
 
         # Log artifacts (optional)
         if logging_params["save_artifacts"]:
-            mlflow.log_artifacts("runs/train")
+            log_artifacts("runs/train")  # Log the training artifacts
 
         # Log the final trained model
         if logging_params["log_model"]:
@@ -145,7 +145,7 @@ def test_yolo_with_mlflow(config):
 
         # Log artifacts (optional)
         if logging_params["save_artifacts"]:
-            mlflow.log_artifacts("runs/val")
+            log_artifacts("mlruns/val")  # Log the validation artifacts
 
 def main():
     # Load configuration
