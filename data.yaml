@@ -1,9 +1,9 @@
 # Data configuration for YOLOv11 on Cityscapes Dataset
 
 # Paths to training and validation images
-train: r"C:/projects/CityScapes---YOLOv11---MLFlow/train/images"  # Path to training images
-val: r"C:/projects/CityScapes---YOLOv11---MLFlow/val/images "     # Path to validation images
-test: r"C:\projects\CityScapes---YOLOv11---MLFlow\test\images"
+train: r"C:\projects\Cityscapes_Yolov11_MLFlow\train" # Path to training images
+val: r"C:\projects\Cityscapes_Yolov11_MLFlow\val"     # Path to validation images
+test: r"C:\projects\Cityscapes_Yolov11_MLFlow\test"
 # Number of classes in the dataset
 nc: 9
 

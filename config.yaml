@@ -12,7 +12,7 @@ model:
     warmup_epochs: 2  # Number of warmup epochs
 
 data:
-  yaml_path: r"C:\projects\CityScapes---YOLOv11---MLFlow\data.yaml" # Path to your dataset YAML file
+  yaml_path: r"C:\projects\Cityscapes_Yolov11_MLFlow\data.yaml" # Path to your dataset YAML file
   augmentation:
     flip: false
     hsv: false
